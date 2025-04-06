@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tobin's Word Counter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js" class="particles-container"></div>
+    
+    <div class="container">
+        <h1>Text Analytics</h1>
+        <div class="input-container">
+            <textarea id="text-input" placeholder="Start typing or paste your text here..."></textarea>
+        </div>
+        <div class="controls">
+            <button id="clear-btn" class="btn secondary">Clear</button>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h3>Words</h3>
+                <span id="word-count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Characters</h3>
+                <span id="char-count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Sentences</h3>
+                <span id="sentence-count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Paragraphs</h3>
+                <span id="para-count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Avg. Word Length</h3>
+                <span id="avg-word-length">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Reading Time</h3>
+                <span id="reading-time">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Unique Words</h3>
+                <span id="unique-words">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>Longest Word</h3>
+                <span id="longest-word">-</span>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
