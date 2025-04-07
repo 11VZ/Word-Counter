@@ -13,18 +13,20 @@ const counters = {
 
 const countStats = (text) => {
     const trimmedText = text.trim();
-    const words = trimmedText ? trimmedText.split(/\s+/) : [];
+    const words = trimmedText ? 
+        trimmedText.split(/\s+/).map(word => word.replace(/[^\w\s']|_/g, "").trim()).filter(Boolean) : 
+        [];
     const wordLengths = words.map(word => word.length);
     const uniqueWords = new Set(words.map(word => word.toLowerCase()));
     
     return {
-        words: trimmedText ? trimmedText.split(/\s+/).length : 0,
+        words: words.length,
         chars: trimmedText.length,
         sentences: trimmedText.split(/[.!?]+/).filter(Boolean).length,
         paras: trimmedText.split(/\n\s*\n/).filter(Boolean).length,
         avgWordLength: words.length ? 
             (wordLengths.reduce((a, b) => a + b, 0) / words.length).toFixed(1) : 0,
-        readingTime: Math.ceil(words.length / 200),
+        readingTime: Math.ceil(words.length / 150),
         uniqueWords: uniqueWords.size,
         longestWord: words.reduce((longest, current) => 
             current.length > longest.length ? current : longest, '')
@@ -34,8 +36,12 @@ const countStats = (text) => {
 const updateDisplay = (stats) => {
     Object.entries(stats).forEach(([key, value]) => {
         if (counters[key]) {
-            counters[key].textContent = typeof value === 'number' ? 
-                value.toLocaleString() : value;
+            if (key === 'readingTime') {
+                counters[key].textContent = `${value.toLocaleString()} M`;
+            } else {
+                counters[key].textContent = typeof value === 'number' ? 
+                    value.toLocaleString() : value;
+            }
         }
     });
 };
